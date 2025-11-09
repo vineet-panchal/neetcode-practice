@@ -10,7 +10,15 @@ Example 2:
 Input: s = "jar", t = "jam"
 Output: false
 '''
-from collections import Counter
+
+'''
+Step 1: Given two strings, check if they contain the same characters as another string, and return True, else return False
+Step 2: We need to keep track of what we saw in each string, so a hashmap would be useful
+Step 3: Use two different hashmaps to track the count of each character for each string, then we compare the two hashmaps.
+'''
+
+from collections import Counter 
+from collections import defaultdict
 
 # solution 1
 def validAnagram(s, t):
@@ -30,8 +38,25 @@ def validAnagram(s, t):
 # Time complexity: O(n)
 # Space complexity: O(n)
 
-# solution 2
 def validAnagram2(s, t):
+  if len(s) != len(t):  
+    return False
+    
+  countS, countT = defaultdict(int), defaultdict(int)
+  for i in range(len(s)):
+    countS[s[i]] += 1
+    countT[t[i]] += 1
+    
+  for c in countS:
+    if countS[c] != countT[c]:
+      return False
+  return True
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+
+
+# solution 2
+def validAnagram3(s, t):
   if len(s) != len(t): 
     return False
 
@@ -49,7 +74,7 @@ def validAnagram2(s, t):
 # Space complexity: O(n)
 
 # solution 3
-def validAnagram3(s, t):
+def validAnagram4(s, t):
   return Counter(s) == Counter(t)
 # Time complexity: O(n)
 # Space complexity: O(n)

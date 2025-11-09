@@ -10,6 +10,12 @@ Input: nums = [1, 2, 3, 4]
 Output: false
 '''
 
+'''
+Step 1: The input is a list of numbers, check if there is duplicate, if so return True, else return False
+Step 2: We have to keep track of what we see in the list. A hashmap could be useful here
+Step 3: Loop through the list and put elements in the hashmap. If a element is already in the hashmap return true. If you loop through all the elements then return false.
+'''
+
 # solution 1
 def containsDuplicate1(nums):
   seen = set()

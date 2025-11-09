@@ -17,15 +17,24 @@ Input: nums = [5,5], target = 10
 Output: [0,1]
 '''
 
+'''
+Step 1: given a list of numbers and a target value, find the index of two numbers in the list where the sum is the target, the indices cannot be the same.
+Step 2: We can just go through the given list, and find values where the sum is the target.
+Straightforward: 
+Use two loops to go through the list. Start the second loop should start after the index of the first. Find values where the sum is equal to target, and return their indices.
+Optimal:
+Use a hashmap to remember what we already seen and their indices
+'''
+
 # solution 1
 def twoSum(nums, target):
-  seen = {}
-  for i, num in enumerate(nums):
-    complement = target - num
-    if complement in seen:
-      return [seen[complement], i]
-    seen[num] = i
-  return []
+  seen = {} # keep track of the elements, and their index
+  for i, num in enumerate(nums): # loop through the list, and get their index (i) and element (num)
+    complement = target - num # calculate the complement, target - current element
+    if complement in seen: # if the complement is in seen:
+      return [seen[complement], i] # then we have found our two indices, and return it
+    seen[num] = i # else put the element and its index in the hashmap
+  return [] # we have found nothing
 # Time complexity: O(n)
 # Space complexity: O(n)
 
