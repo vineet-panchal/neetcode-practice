@@ -44,11 +44,11 @@ def topKFrequent3(nums, k):
 
 # solution 4
 def topKFrequent4(nums, k):
-  count = {}
-  freq = [[] for i in range(len(nums) + 1)]
-
-  for n in nums:
-    count[n] = 1 + count.get(n, 0)
+  count = {} # intialize hashmap to count elements
+  for n in nums: # for each element of nums
+    count[n] = 1 + count.get(n, 0) # add 1, if it is already in hashmap, else put it as 0
+  
+  freq = [[] for i in range(len(nums) + 1)] # 
         
   for n, c in count.items():
     freq[c].append(n)
@@ -61,6 +61,15 @@ def topKFrequent4(nums, k):
         return res
 # Time complexity: O(n)
 # Space complexity: O(n)
+
+def topKFrequent5(nums, k):
+  count = {}
+  for n in nums: 
+    count[n] = 1 + count.get(n, 0)
+
+  sorted_count = sorted(count, key=count.get, reverse=True)
+  return sorted_count[0:k]
+# Time Complexity: O(n log n)
 
 if __name__ == "__main__":
   # Test cases

@@ -14,16 +14,16 @@ Output: 7
 '''
 
 def longestConsecutive(nums) -> int:
-  numSet = set(nums)
-  maxLength = 0
+  numSet = set(nums) # cast arr as a set, to remove duplicate elements
+  maxLength = 0 # set the maxlength to 0
 
-  for n in nums:
-    if (n - 1) not in numSet:
-      currLength = 0
-      while (n + currLength) in numSet:
-        currLength += 1
-      maxLength = max(currLength, maxLength)
-  return maxLength
+  for n in nums: # loop through list
+    if (n - 1) not in numSet: # if there isn't a previous consecutive num in the rest of the list, then
+      currLength = 0 # set the current length to 0
+      while (n + currLength) in numSet: # if n + current length is in the set
+        currLength += 1 # increment the current length
+      maxLength = max(currLength, maxLength) # get the max length, between current and max length
+  return maxLength # return the max length
 
 # Time complexity: O(n)
 # Space complexity: O(n)

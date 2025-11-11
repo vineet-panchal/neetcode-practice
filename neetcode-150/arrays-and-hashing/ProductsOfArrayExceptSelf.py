@@ -13,11 +13,33 @@ Output: [0,-6,0,0,0]
 '''
 
 def productExceptSelf(nums):
-  result = [1] * (len(nums))
-  prefix = 1
+  '''
+  we can use the two pass-approach
+  the first pass, builds up the product of all elements before each index
+  the second pass, multiplies each position of all elements after that index
+  
+  Let's trace through with nums = [1, 2, 3, 4]:
+  After initialization:
+  result = [1, 1, 1, 1]
+  First loop (prefix products):
+  i=0: result[0] = 1,      prefix = 1 → 1   | result = [1, 1, 1, 1]
+  i=1: result[1] = 1,      prefix = 1 → 2   | result = [1, 1, 1, 1]
+  i=2: result[2] = 2,      prefix = 2 → 6   | result = [1, 1, 2, 1]
+  i=3: result[3] = 6,      prefix = 6 → 24  | result = [1, 1, 2, 6]
+  Second loop (postfix products):
+  i=3: result[3] = 6 * 1 = 6,    postfix = 1 → 4   | result = [1, 1, 2, 6]
+  i=2: result[2] = 2 * 4 = 8,    postfix = 4 → 12  | result = [1, 1, 8, 6]
+  i=1: result[1] = 1 * 12 = 12,  postfix = 12 → 24 | result = [1, 12, 8, 6]
+  i=0: result[0] = 1 * 24 = 24,  postfix = 24 → 24 | result = [24, 12, 8, 6]
+  '''
+  result = [1] * (len(nums)) # initialize result list
+  # first pass
+  prefix = 1 # set prefix to 1, to multiply
   for i in range(len(nums)):
     result[i] = prefix
     prefix *= nums[i]
+  
+  # second pass
   postfix = 1
   for i in range(len(nums) - 1, -1, -1):
     result[i] *= postfix
