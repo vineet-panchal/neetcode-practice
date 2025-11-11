@@ -10,19 +10,25 @@ Output: [1,2]
 Explanation: The sum of 1 and 2 is 3. Since we are assuming a 1-indexed array, index1 = 1, index2 = 2. We return [1, 2].
 '''
 
-def twoSum(self, numbers, target):
-  left = 0
-  right = len(numbers) - 1
+'''
+since, this is a sorted list, we can use the two pointer approach.
+'''
 
-  while left < right:
-    currSum = numbers[left] + numbers[right]
+def twoSum(self, numbers, target):
+  left = 0 # set left pointer to the start of the list
+  right = len(numbers) - 1 # set right pointer to the end of the list
+
+  while left < right: # while left is less than right (they cannot be the same element)
+    currSum = numbers[left] + numbers[right] # calculate the sum of left element and right element
     if currSum > target: 
-      right -= 1
+    # if the current sum is greater than the target, then lower our bigger number (right)
+      right -= 1 # then, decrement right pointer
     elif currSum < target:
-      left += 1
-    else:
-      return [left + 1, right + 1]
-  return []
+    # if the current sum is less than the target, then increase our smaller number (left)
+      left += 1 # then, increment left pointer
+    else: # else, the current sum is equal to the target
+      return [left + 1, right + 1] # return our two indices (1-indexed, so add 1 to both)
+  return [] # we have not found a two sum, return empty list
 # Time complexity: O(n)
 # Space complexity: O(1)
 # The time complexity is O(n) because we are iterating through the array once with two pointers, and the space complexity is O(1) because we are using only a constant amount of extra space for the left and right pointers.
