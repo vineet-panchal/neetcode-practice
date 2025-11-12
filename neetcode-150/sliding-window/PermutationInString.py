@@ -33,21 +33,25 @@ def checkInclusion(self, s1: str, s2: str) -> bool:
 # The above code is a brute force approach to check if s2 contains a permutation of s1.
 # It uses a nested loop to generate all substrings of s2 and checks if any of them is a permutation of s1.
 
-def checkInclusion1(self, s1: str, s2: str) -> bool:
-  count1 = {}
-  for c in s1:
-    count1[c] = 1 + count1.get(c, 0)
+def checkInclusion1(s1, s2) -> bool:
+  count1 = {} # to track what we have seen in string 1
+  for c in s1: # for every character in string 1
+    count1[c] = 1 + count1.get(c, 0) # add 1 if we have seen it, else set it to 0
         
-  need = len(count1)
-  for i in range(len(s2)):
-    count2, cur = {}, 0
-    for j in range(i, len(s2)):
-      count2[s2[j]] = 1 + count2.get(s2[j], 0)
-      if count1.get(s2[j], 0) < count2[s2[j]]:
+  need = len(count1) # get the length of count 1
+  for i in range(len(s2)): # let i be the left pointer, to loop through string 2
+    count2, cur = {}, 0 # count2 to track what is seen in string 2, 
+    for j in range(i, len(s2)): # let j be the right pointer, to loop through string 1, starting from i
+      count2[s2[j]] = 1 + count2.get(s2[j], 0) # counts frequency of characters for string 2
+      if count1.get(s2[j], 0) < count2[s2[j]]: 
+      # if we have more of a character than string 1 has, this window cannot be a permutation
+      # break and try the next starting position
         break
       if count1.get(s2[j], 0) == count2[s2[j]]:
+      # when a character's frequency matches exactly, increment cur
         cur += 1
       if cur == need:
+      # when cur == need, we've matched all unique characters with correct frequencies
         return True
   return False
 # Time complexity: O(N^2)

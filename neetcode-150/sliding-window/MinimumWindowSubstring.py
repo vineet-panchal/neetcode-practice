@@ -19,24 +19,26 @@ Output: ""
 from collections import Counter
 
 def minWindow(s: str, t: str) -> str:
-  tCount = Counter(t)
-  print(tCount)
-  sCount = Counter()
-  print(sCount)
-  l = 0
-  minLength = float("inf")
-  result = ""
-  for r in range(len(s)):
-    sCount[s[r]] += 1
+  tCount = Counter(t) # count of each character needed from string t
+  sCount = Counter() # count of characters in current window
+  l = 0 # set left pointer of window
+  minLength = float("inf") # track shortest valid window
+  result = "" # store the resulting substring
+  for r in range(len(s)): # set right pointer of window, to loop through string s
+    sCount[s[r]] += 1 # add each character to the window by incrementing count in sCount
     while all(sCount[c] >= tCount[c] for c in tCount):
-      if (r - l + 1) < minLength:
+    # the window is valid when it contains all characters from t with sufficient counts
+    # all(sCount[c] >= tCount[c] for c in tCount) checks if every character in string t
+    # appears in the window at least as many times as needed
+      if (r - l + 1) < minLength: # if current window is smaller than previous minimum, update the result
         minLength = r - l + 1
         result = s[l:r + 1]
       sCount[s[l]] -= 1
-      if sCount[s[l]] == 0:
+      if sCount[s[l]] == 0: # remove the left most character from the window
         del sCount[s[l]]
-      l += 1
+      l += 1 # move left pointer to right to try finding a smaller valid window
   return result
+# Time Complexity: O(n + m)
 
 def minWindow1(self, s: str, t: str) -> str:
   if t == "":

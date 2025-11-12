@@ -13,20 +13,22 @@ Input: prices = [10,8,7,5,2]
 Output: 0
 '''
 
-def maxProfit(self, prices) -> int:
-  left = 0
-  right = 1
-  maxPrice = 0
+def maxProfit(prices) -> int:
+  left = 0 # set left pointer to the start of the list
+  right = 1 # set right pointer to the element after left
+  maxProfit = 0 # set maxPrice to 0
 
-  while right < len(prices):
-    if prices[left] < prices[right]:
-      profit = prices[right] - prices[left]
-      maxPrice = max(maxPrice, profit)
-    else:
-      left = right
-      right += 1
-        
-  return maxPrice
+  while right < len(prices): # while right has not reached the end of the list
+    if prices[left] < prices[right]: 
+    # if left element is less than the right element, then we have a potential profit
+      profit = prices[right] - prices[left] # calculate current profit
+      maxProfit = max(maxProfit, profit) 
+      # get the max profit which is the max between current profit, and previous max profit
+    else: # else, the left element is greater than the right element
+      left = right 
+      # set the left pointer to right pointer, because we can't even find profit, if right is smaller than left
+      right += 1 # increment right by 1, so that it is always 1 greater than left
+  return maxProfit # return the max profit
 
 if __name__ == "__main__":
   prices = [10,1,5,6,7,1]

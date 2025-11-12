@@ -12,20 +12,25 @@ Input: s = "AAABABB", k = 1
 Output: 5
 '''
 
-def characterReplacement(self, s: str, k: int) -> int:
-  count = {}
-  result = 0
-  left = 0
-  maxf = 0
-  for right in range(len(s)):
+def characterReplacement(s, k) -> int:
+  count = {} # to track character frequencies in current window
+  result = 0 # maximum valid window size found
+  left = 0 # set left pointer to the stasrt of string
+  maxf = 0 # maximum frequency of any character seen so far in the window
+  for right in range(len(s)): # set right pointer to loop through the list
     count[s[right]] = 1 + count.get(s[right], 0)
     maxf = max(maxf, count[s[right]])
+    # 1. Expand window: add character at 'right'
+    # add the new character adn update maxf if this character becomes more frequent
 
-    while (right - left + 1) - maxf > k:
+    while (right - left + 1) - maxf > k: 
       count[s[left]] -= 1
       left += 1
+    # 1. shrink window if invalid
+    # if we need more than k replacements, shrink from the left to right
             
     result = max(result, right - left + 1)
+    # 3. update result with current window size
   return result
 
 if __name__ == "__main__":
