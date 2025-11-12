@@ -21,19 +21,20 @@ Output: false
 
 # Stack Approach
 def isValid1(s: str) -> bool:
-  stack = []
+  stack = [] # 
   closeToOpen = { ")" : "(", "]" : "[", "}" : "{" }
+  # maps each closing bracket to its corresponding opening bracket
 
-  for c in s:
-    if c in closeToOpen:
-      if stack and stack[-1] == closeToOpen[c]:
-        stack.pop()
-      else:
+  for c in s: # loop through the string using c
+    if c in closeToOpen: # if it is a closing bracket
+      if stack and stack[-1] == closeToOpen[c]: # check if the stack has an opening bracket on top
+        stack.pop() # if yes, pop it off (we found a valid pair)
+      else: # else no we did not find a opening bracket
         return False
-    else:
-      stack.append(c)
+    else: # if it is an opening bracket
+      stack.append(c) # push it onto the stack (waiting for its closing bracket)
         
-  return True if not stack else False
+  return True if not stack else False # return true only if the stack is empty (all brackets were matched)
   # Time complexity: O(n)
   # Space complexity: O(n)
 

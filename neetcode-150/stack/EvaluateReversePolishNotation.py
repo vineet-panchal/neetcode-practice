@@ -104,21 +104,23 @@ def evalRPN2(tokens) -> int:
 
 # Stack Approach
 def evalRPN3(tokens) -> int:
-  stack = []
-  for c in tokens:
-    if c == "+":
-      stack.append(stack.pop() + stack.pop())
-    elif c == "-":
-      a, b = stack.pop(), stack.pop()
-      stack.append(b - a)
-    elif c == "*":
-      stack.append(stack.pop() * stack.pop())
-    elif c == "/":
-      a, b = stack.pop(), stack.pop()
-      stack.append(int(float(b) / a))
-    else:
-      stack.append(int(c))
-  return stack[0]
+  stack = [] # create a stack to track operations, store numbers in here
+  for c in tokens: # for every character in tokens
+    if c == "+": # if the character is +
+      stack.append(stack.pop() + stack.pop()) 
+      # add the sum of the two elements and add it to the stack
+    elif c == "-": # if the character is -
+      a, b = stack.pop(), stack.pop() # grab the elements that are being looked at
+      stack.append(b - a) # subtract the numbers and add them to the stack
+    elif c == "*": # if the character is *
+      stack.append(stack.pop() * stack.pop()) 
+      # multiply the two elements, and add it to the stack
+    elif c == "/": # if the character is /
+      a, b = stack.pop(), stack.pop() # grab the two elements being looked at
+      stack.append(int(float(b) / a)) # divide the two elements and add them to the stack
+    else: # else the character is a number
+      stack.append(int(c)) # append the number to the stack
+  return stack[0] # return the result. There should only be one element in the stack at the end
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 
