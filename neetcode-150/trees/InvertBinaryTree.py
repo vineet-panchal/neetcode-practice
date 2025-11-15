@@ -1,3 +1,6 @@
+# 226 - Invert Binary Tree
+# Leetcode Link: https://leetcode.com/problems/invert-binary-tree/
+
 class TreeNode:
   def __init__(self, val=0, left=None, right=None):
     self.val = val
