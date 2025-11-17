@@ -1,3 +1,6 @@
+# 703 - Kth Largest Element In A Stream
+# Leetcode Link: https://leetcode.com/problems/kth-largest-element-in-a-stream/
+
 '''
 Design a class to find the kth largest integer in a stream of values, including duplicates. E.g. the 2nd largest from [1, 2, 3, 3] is 3. The stream is not necessarily sorted.
 
@@ -27,6 +30,7 @@ Constraints:
 There will always be at least k integers in the stream when you search for the kth integer.
 '''
 
+# Solutions To The Problem: 
 from typing import List
 import heapq
 
