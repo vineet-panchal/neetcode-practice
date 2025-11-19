@@ -1,4 +1,5 @@
-# 
+# 695 - Max Area of Island
+# Leetcode Link: https://leetcode.com/problems/max-area-of-island/
 
 '''
 You are given a matrix grid where grid[i] is either a 0 (representing water) or 1 (representing land).
