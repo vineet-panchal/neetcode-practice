@@ -1,3 +1,6 @@
+# 1 - Two Sum
+# Leetcode Link: https://leetcode.com/problems/two-sum/
+
 '''
 Given an array of integers nums and an integer target, return the indices i and j such that nums[i] + nums[j] == target and i != j.
 You may assume that every input has exactly one pair of indices i and j that satisfy the condition.
@@ -18,15 +21,28 @@ Output: [0,1]
 '''
 
 '''
-Step 1: given a list of numbers and a target value, find the index of two numbers in the list where the sum is the target, the indices cannot be the same.
-Step 2: We can just go through the given list, and find values where the sum is the target.
-Straightforward: 
-Use two loops to go through the list. Start the second loop should start after the index of the first. Find values where the sum is equal to target, and return their indices.
-Optimal:
-Use a hashmap to remember what we already seen and their indices
+Initial Thoughts
+
+Simplify the problem:
+  - given a list of numbers and a target int, find two numbers whose sum is the target, and return their indcies in a list
+
+Pattern Recognition: Straightforward solution
+  - we can use loops that represent two pointers, and go through the list and find two elements that add up to the target
+
+Pattern Recognition: Optimal solution
+  - use a hashmap to keep track of what we've already seen, and their indices
+  - loop through the list using enumerate to get the index and the element
+  - calculate the current difference by substracting the current element from the target
+  - we can then check if our difference is in our hashmap
+  - if it is then return the index and the index of the element we found in the hashmap in a list
+  - else we just add the element and its index into the hashmap
 '''
 
-# solution 1
+# Solutions to the problem:
+
+# Hashmaps
+# Time complexity: O(n)
+# Space complexity: O(n)
 def twoSum(nums, target):
   seen = {} # keep track of the elements, and their index
   for i, num in enumerate(nums): # loop through the list, and get their index (i) and element (num)
@@ -35,18 +51,18 @@ def twoSum(nums, target):
       return [seen[complement], i] # then we have found our two indices, and return it
     seen[num] = i # else put the element and its index in the hashmap
   return [] # we have found nothing
-# Time complexity: O(n)
-# Space complexity: O(n)
 
-# solution 2
+
+
+# Nested Loops
+# Time complexity: O(n^2)
+# Space complexity: O(1)
 def twoSum2(nums, target):
   for i in range(len(nums)):
     for j in range(i + 1, len(nums)):
       if nums[i] + nums[j] == target:
         return [i, j]
   return []
-# Time complexity: O(n^2)
-# Space complexity: O(1)
 
 if __name__ == "__main__":
   # Test cases

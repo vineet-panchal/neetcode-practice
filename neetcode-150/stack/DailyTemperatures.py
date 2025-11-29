@@ -1,3 +1,6 @@
+# 739 - Daily Temperatures
+# Leetcode Link: https://leetcode.com/problems/daily-temperatures/
+
 '''
 You are given an array of integers temperatures where temperatures[i] represents the daily temperatures on the ith day.
 Return an array result where result[i] is the number of days after the ith day before a warmer temperature appears on a future day. If there is no day in the future where a warmer temperature will appear for the ith day, set result[i] to 0 instead.
@@ -16,6 +19,9 @@ Constraints:
 1 <= temperatures[i] <= 100
 '''
 
+# Two Pointers
+# Time Complexity: O(n^2)
+# Space Complexity: O(n)
 def dailyTemperatures(temperatures):
   result = [] # initialize resulting list
   left = 0 # set left pointer of the window
@@ -35,6 +41,9 @@ def dailyTemperatures(temperatures):
   return result
 
 
+# Stack
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def dailyTemperatures1(temperatures):
     result = [0] * len(temperatures) # set the result to be the same size as temperatures
     stack = []  # Stack stores indices
@@ -45,8 +54,6 @@ def dailyTemperatures1(temperatures):
             result[prev_index] = i - prev_index # append to the list with the days till warmer day
         stack.append(i) # append index i to the stack, if it is not empty
     return result
-# Time Complexity: O(n)
-# Space Complexity: O(n)
 
 if __name__ == "__main__":
   print(dailyTemperatures([30, 38, 30, 36, 35, 40, 28])) # [1, 4, 1, 2, 1, 0, 0]

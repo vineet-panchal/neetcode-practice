@@ -1,3 +1,29 @@
+# 21 - Merge Two Sorted Lists
+# Leetcode Link: https://leetcode.com/problems/merge-two-sorted-lists/
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def build_list(values):
+    if not values:
+        return None
+    head = ListNode(values[0])
+    current = head
+    for val in values[1:]:
+        current.next = ListNode(val)
+        current = current.next
+    return head
+
+def to_list(head):
+    result = []
+    current = head
+    while current:
+        result.append(current.val)
+        current = current.next
+    return result
+
 '''
 You are given the heads of two sorted linked lists list1 and list2.
 Merge the two lists into one sorted linked list and return the head of the new sorted linked list.
@@ -19,32 +45,6 @@ Constraints:
 0 <= The length of the each list <= 100.
 -100 <= Node.val <= 100
 '''
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-
-
-def build_list(values):
-    if not values:
-        return None
-    head = ListNode(values[0])
-    current = head
-    for val in values[1:]:
-        current.next = ListNode(val)
-        current = current.next
-    return head
-
-def to_list(head):
-    result = []
-    current = head
-    while current:
-        result.append(current.val)
-        current = current.next
-    return result
-
 
 def mergeTwoLists(list1: ListNode, list2: ListNode):
   dummy = node = ListNode()

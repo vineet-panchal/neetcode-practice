@@ -1,3 +1,6 @@
+# 125 - Valid Palindrome
+# Leetcode Link: https://leetcode.com/problems/valid-palindrome/
+
 '''
 Given a string s, return true if it is a palindrome, otherwise return false.
 A palindrome is a string that reads the same forward and backward. It is also case-insensitive and ignores all non-alphanumeric characters.
@@ -12,15 +15,27 @@ Input: s = "tab a cat"
 Output: false
 '''
 
+# Solutions To The Problem:
+
+# Check Reverse
+# Time complexity: O(n)
+# Space complexity: O(n)
 def isPalindrome(s) -> bool:
   strWithoutPunct = ""
   for char in s:
     if char.isalnum():
       strWithoutPunct += char.lower()
   return strWithoutPunct == strWithoutPunct[::-1]
-# Time complexity: O(n)
-# Space complexity: O(n)
-# The time complexity is O(n) because we are iterating through the string once to create strWithoutPunct, and then we are checking if strWithoutPunct is equal to its reverse, which takes O(n) time.
+
+
+
+# Making Alphanumeric Function
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+def alphaNum(c):
+  return (ord('A') <= ord(c) <= ord('Z') or
+          ord('a') <= ord(c) <= ord('z') or
+          ord('0') <= ord(c) <= ord('9'))
 
 def isPalindrome1(s) -> bool:
   left = 0
@@ -38,14 +53,10 @@ def isPalindrome1(s) -> bool:
   return True
 
 
-def alphaNum(c):
-  return (ord('A') <= ord(c) <= ord('Z') or
-          ord('a') <= ord(c) <= ord('z') or
-          ord('0') <= ord(c) <= ord('9'))
-# Time complexity: O(n)
-# Space complexity: O(1)
-# The time complexity is O(n) because we are iterating through the string once, and the space complexity is O(1) because we are using only a constant amount of extra space for the left and right pointers.
 
+# Two Pointers
+# Time Complexity: O(n)
+# Space Complexity: O(1) 
 def isPalindrome2(s) -> bool:
   left = 0 # set left pointer to the index of start of the list
   right = len(s) - 1 # set right pointer to the index of the end of the list
@@ -65,8 +76,6 @@ def isPalindrome2(s) -> bool:
     left += 1 # increment left pointer
     right -= 1 # decrement right pointer
   return True # we compared each two opposing elements, and they all pass, so return true
-# Time Complexity: O(n)
-# Space Complexity: O(1)
 
 if __name__ == "__main__":
   s = "Was it a car or a cat I saw?"

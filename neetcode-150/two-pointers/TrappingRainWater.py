@@ -1,9 +1,16 @@
+# 42 - Trapping Rain Water
+# Leetcode Link: https://leetcode.com/problems/trapping-rain-water/
+
 '''
 You are given an array non-negative integers height which represent an elevation map. Each value height[i] represents the height of a bar, which has a width of 1.
 Return the maximum area of water that can be trapped between the bars.
 
 Example 1:
 Input: height = [0,2,0,3,1,0,1,3,2,1]
+Output: 9
+
+Example 2:
+Input: height = [4,2,0,3,2,5]
 Output: 9
 '''
 
@@ -78,3 +85,9 @@ def trap(height) -> int:
       rightMax = max(rightMax, height[right]) # calculate the right max
       result += rightMax - height[right] # increment result with the water trapped
   return result # return the resulting water trapped
+
+if __name__ == "__main__":
+  height = [0,1,0,2,1,0,1,3,2,1,2,1]
+  height1 = [4,2,0,3,2,5]
+  print(trap(height))
+  print(trap(height1))

@@ -1,3 +1,6 @@
+# 11 - Container With Most Water
+# Leetcode Link: https://leetcode.com/problems/container-with-most-water/
+
 '''
 You are given an integer array heights where heights[i] represents the height of the ith bar.
 You may choose any two bars to form a container. Return the maximum amount of water a container can store.
@@ -11,7 +14,10 @@ Input: height = [2,2,2]
 Output: 4
 '''
 
-def maxArea(self, heights) -> int:
+# Nested Loops
+# Time Complexity: O(n^2)
+# Space Complexity: O(1)
+def maxArea(heights) -> int:
   result = 0
   for left in range(len(heights)):
     for right in range(left + 1, len(heights)):
@@ -19,6 +25,11 @@ def maxArea(self, heights) -> int:
       result = max(result, area)
   return result
 
+
+
+# Two Pointers
+# Time Complexity: O(log n)
+# Space Complexity: O(1)
 def maxArea1(heights) -> int:
   result = 0 # initialize result (the max area)
   left = 0 # set left pointer to the start of the list

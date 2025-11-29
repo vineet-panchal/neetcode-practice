@@ -1,3 +1,6 @@
+# 20 - Valid Parentheses
+# Leetcode Link: https://leetcode.com/problems/valid-parentheses/
+
 '''
 You are given a string s consisting of the following characters: '(', ')', '{', '}', '[' and ']'.
 The input string s is valid if and only if:
@@ -20,6 +23,8 @@ Output: false
 '''
 
 # Stack Approach
+# Time complexity: O(n)
+# Space complexity: O(n)
 def isValid1(s: str) -> bool:
   stack = [] # 
   closeToOpen = { ")" : "(", "]" : "[", "}" : "{" }
@@ -35,8 +40,6 @@ def isValid1(s: str) -> bool:
       stack.append(c) # push it onto the stack (waiting for its closing bracket)
         
   return True if not stack else False # return true only if the stack is empty (all brackets were matched)
-  # Time complexity: O(n)
-  # Space complexity: O(n)
 
 
 

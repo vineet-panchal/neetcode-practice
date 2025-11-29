@@ -1,3 +1,6 @@
+# 567 - Permutation In String
+# Leetcode Link: https://leetcode.com/problems/permutation-in-string/
+
 '''
 You are given two strings s1 and s2.
 Return true if s2 contains a permutation of s1, or false otherwise. That means if a permutation of s1 exists as a substring of s2, then return true.
@@ -13,6 +16,9 @@ Input: s1 = "abc", s2 = "lecaabee"
 Output: false
 '''
 
+# Brute Force
+# Time complexity: O(N^2 * M log M)
+# Space complexity: O(M)
 def checkInclusion(self, s1: str, s2: str) -> bool:
   s1 = sorted(s1)
 
@@ -23,8 +29,6 @@ def checkInclusion(self, s1: str, s2: str) -> bool:
       if subStr == s1:
         return True
   return False
-# Time complexity: O(N^2 * M log M)
-# Space complexity: O(M)
 # The above code is a brute force approach to check if s2 contains a permutation of s1.
 # It uses a nested loop to generate all substrings of s2 and checks if any of them is a permutation of s1.
 # The first function sorts both s1 and the substring of s2 and compares them.
@@ -33,6 +37,11 @@ def checkInclusion(self, s1: str, s2: str) -> bool:
 # The above code is a brute force approach to check if s2 contains a permutation of s1.
 # It uses a nested loop to generate all substrings of s2 and checks if any of them is a permutation of s1.
 
+
+
+# Brute Force 2
+# Time complexity: O(N^2)
+# Space complexity: O(N)
 def checkInclusion1(s1, s2) -> bool:
   count1 = {} # to track what we have seen in string 1
   for c in s1: # for every character in string 1
@@ -54,8 +63,6 @@ def checkInclusion1(s1, s2) -> bool:
       # when cur == need, we've matched all unique characters with correct frequencies
         return True
   return False
-# Time complexity: O(N^2)
-# Space complexity: O(N)
 # The above code is a brute force approach to check if s2 contains a permutation of s1.
 # It uses a nested loop to generate all substrings of s2 and checks if any of them is a permutation of s1.
 # The first function sorts both s1 and the substring of s2 and compares them.
@@ -66,6 +73,10 @@ def checkInclusion1(s1, s2) -> bool:
 # The above code is a brute force approach to check if s2 contains a permutation of s1.
 
 
+
+# Sliding Window
+# Time complexity: O(N)
+# Space complexity: O(1) because the size of the count array is constant (26 for lowercase letters)
 def checkInclusion2(self, s1: str, s2: str) -> bool:
   if len(s1) > len(s2):
     return False
@@ -99,8 +110,6 @@ def checkInclusion2(self, s1: str, s2: str) -> bool:
       matches -= 1
     l += 1
   return matches == 26
-# Time complexity: O(N)
-# Space complexity: O(1) because the size of the count array is constant (26 for lowercase letters)
 # The above code is a sliding window approach to check if s2 contains a permutation of s1.
 # It uses two arrays of size 26 to count the frequency of characters in s1 and s2.
 # The matches variable keeps track of how many characters have the same frequency in both arrays.

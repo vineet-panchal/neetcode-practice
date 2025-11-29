@@ -1,3 +1,6 @@
+# 3 - Longest Substring Without Repeating Characters
+# Leetcode Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
 '''
 Given a string s, find the length of the longest substring without duplicate characters.
 A substring is a contiguous sequence of characters within a string.

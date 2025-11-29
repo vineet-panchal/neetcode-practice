@@ -1,3 +1,6 @@
+# 36 - Valid Sudoku
+# Leetcode Link: https://leetcode.com/problems/valid-sudoku/
+
 '''
 You are given a a 9 x 9 Sudoku board board. A Sudoku board is valid if the following rules are followed:
 Each row must contain the digits 1-9 without duplicates.
@@ -73,21 +76,26 @@ Space complexity: O(1) since we store at most 81 numbers across our data structu
 from collections import defaultdict
 
 def isValidSudoku(board) -> bool:
-  cols = defaultdict(set)
-  rows = defaultdict(set)
-  squares = defaultdict(set)
-
-  for row in range(9):
-    for col in range(9):
-      if board[row][col] == ".":
-        continue
-      if (board[row][col] in rows[row] or
-          board[row][col] in cols[col] or
-          board[row][col] in squares[(row // 3, col // 3)]):
-        return False
-      cols[col].add(board[row][col])
-      rows[row].add(board[row][col])
+  cols = defaultdict(set) # create a hashmap for cols, to track numbers in each col
+  rows = defaultdict(set) # create a hashmap for rows, to track numbers in each row
+  squares = defaultdict(set) # create a hashmap for each 3 * 3 subgrid
+  for row in range(9): # go through each row
+    for col in range(9): # go through each col
+      if board[row][col] == ".": # if a cell is empty
+        continue # then skip to the next cell
+      # before adding a number into our hashmaps, check if it already exists in row, col, and subgrid
+      if (board[row][col] in rows[row] or # does number exist in the row
+          board[row][col] in cols[col] or # does number exist in the col
+          board[row][col] in squares[(row // 3, col // 3)]): # does number exist in the subgrid
+        return False # if found any of these, the board is invalid
+      cols[col].add(board[row][col]) # add the number to the set
+      rows[row].add(board[row][col]) # add the number to the set
       squares[(row // 3, col // 3)].add(board[row][col])
+      # This maps each cell to its 3×3 sub-grid using integer division:
+      # Cells at rows 0-2 and cols 0-2 → square (0, 0)
+      # Cells at rows 0-2 and cols 3-5 → square (0, 1)
+      # Cells at rows 6-8 and cols 6-8 → square (2, 2)
+      # So there are 9 possible square keys: (0,0) through (2,2).
   return True
 
 # Time complexity: O(1) since the board is always 9x9

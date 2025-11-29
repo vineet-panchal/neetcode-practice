@@ -1,3 +1,6 @@
+# 15 - 3Sum
+# Leetcode Link: https://leetcode.com/problems/3sum/
+
 '''
 Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] where nums[i] + nums[j] + nums[k] == 0, and the indices i, j and k are all distinct.
 The output should not contain any duplicate triplets. You may return the output and the triplets in any order.
@@ -17,6 +20,9 @@ Output: []
 Explanation: The only possible triplet does not sum up to 0.
 '''
 
+# Two Pointers
+# Time Complexity: O(n^2)
+# Space Complexity: O(1) without output, O(n) or O(n^2) if we include the output
 def threeSum(nums):
   res = [] # initialize resulting list
   nums.sort() # sort input list nums
@@ -47,8 +53,6 @@ def threeSum(nums):
         # after finding a valid triplet, skip duplicate values for the second number to avoid duplicate results
           left += 1 
   return res # return our resulting list
-# Time Complexity: O(n^2)
-# Space Complexity: O(1) without output, O(n) or O(n^2) if we include the output
 
 if __name__ == "__main__":
   print(threeSum([-1, 0, 1, 2, -1, -4])) # [[-1, -1, 2], [-1, 0, 1]]

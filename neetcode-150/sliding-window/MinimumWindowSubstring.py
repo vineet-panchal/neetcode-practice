@@ -1,3 +1,6 @@
+# 76 - Minimum Window Substring
+# Leetcode Link: https://leetcode.com/problems/minimum-window-substring/
+
 '''
 Given two strings s and t, return the shortest substring of s such that every character in t, including duplicates, is present in the substring. If such a substring does not exist, return an empty string "".
 You may assume that the correct output is always unique.
@@ -18,6 +21,9 @@ Output: ""
 
 from collections import Counter
 
+# Sliding Window
+# Time Complexity: O(n + m)
+# Space Complexity: O(n + m)
 def minWindow(s: str, t: str) -> str:
   tCount = Counter(t) # count of each character needed from string t
   sCount = Counter() # count of characters in current window
@@ -38,38 +44,13 @@ def minWindow(s: str, t: str) -> str:
         del sCount[s[l]]
       l += 1 # move left pointer to right to try finding a smaller valid window
   return result
-# Time Complexity: O(n + m)
 
-def minWindow1(self, s: str, t: str) -> str:
-  if t == "":
-    return ""
 
-  countT = {}
-  for c in t:
-    countT[c] = 1 + countT.get(c, 0)
 
-  res, resLen = [-1, -1], float("infinity")
-  for i in range(len(s)):
-    countS = {}
-    for j in range(i, len(s)):
-      countS[s[j]] = 1 + countS.get(s[j], 0)
-
-      flag = True
-      for c in countT:
-        if countT[c] > countS.get(c, 0):
-          flag = False
-          break
-                
-        if flag and (j - i + 1) < resLen:
-          resLen = j - i + 1
-          res = [i, j]
-
-  l, r = res
-  return s[l : r + 1] if resLen != float("infinity") else ""
-  # Time complexity: O(n^2)
-  # Space complexity: O(n)
-
-def minWindow2(self, s: str, t: str) -> str:
+# Sliding Window 2
+# Time complexity: O(n)
+# Space complexity: O(n)
+def minWindow2(s: str, t: str) -> str:
   if t == "":
     return ""
 
@@ -98,8 +79,6 @@ def minWindow2(self, s: str, t: str) -> str:
         l += 1
   l, r = res
   return s[l : r + 1] if resLen != float("infinity") else ""
-  # Time complexity: O(n)
-  # Space complexity: O(n)
 
 if __name__ == "__main__":
   # Test cases
@@ -110,14 +89,6 @@ if __name__ == "__main__":
   print(minWindow("a", "")) # ""
   print(minWindow("", "a")) # ""
   print(minWindow("", "")) # ""
-  
-  print(minWindow1("ADOBECODEBANC", "ABC")) # "BANC"
-  print(minWindow1("a", "a")) # "a"
-  print(minWindow1("a", "aa")) # ""
-  print(minWindow1("aa", "aa")) # "aa"
-  print(minWindow1("a", "")) # ""
-  print(minWindow1("", "a")) # ""
-  print(minWindow1("", "")) # ""
   
   print(minWindow2("ADOBECODEBANC", "ABC")) # "BANC"
   print(minWindow2("a", "a")) # "a"

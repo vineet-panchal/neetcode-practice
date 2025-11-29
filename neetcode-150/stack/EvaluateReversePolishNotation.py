@@ -1,3 +1,6 @@
+# 150 - Evaluate Reverse Polish Notation
+# Leetcode Link: https://leetcode.com/problems/evaluate-reverse-polish-notation/
+
 '''
 You are given an array of strings tokens that represents a valid arithmetic expression in Reverse Polish Notation.
 Return the integer that represents the evaluation of the expression.
@@ -12,6 +15,8 @@ Explanation: ((1 + 2) * 3) - 4 = 5
 '''
 
 # Brute Force Approach
+# Time Complexity: O(n^2)
+# Space Complexity: O(n)
 def evalRPN(tokens) -> int:
   while len(tokens) > 1:
     for i in range(len(tokens)):
@@ -30,12 +35,12 @@ def evalRPN(tokens) -> int:
         tokens = tokens[:i-2] + [str(result)] + tokens[i+1:]
         break
   return int(tokens[0])
-# Time Complexity: O(n^2)
-# Space Complexity: O(n)
 
 
 
 # Doubly Linked List Approach
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 class DoublyLinkedList:
     def __init__(self, val, next=None, prev=None):
         self.val = val
@@ -72,12 +77,12 @@ def evalRPN1(tokens) -> int:
     head = head.next
 
   return ans
-# Time Complexity: O(n)
-# Space Complexity: O(n)
 
 
 
 # Recursion Approach
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def evalRPN2(tokens) -> int:
   def dfs():
     token = tokens.pop()
@@ -97,12 +102,12 @@ def evalRPN2(tokens) -> int:
       return int(left / right)
         
   return dfs()
-# Time Complexity: O(n)
-# Space Complexity: O(n)
 
 
 
 # Stack Approach
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def evalRPN3(tokens) -> int:
   stack = [] # create a stack to track operations, store numbers in here
   for c in tokens: # for every character in tokens
@@ -121,9 +126,6 @@ def evalRPN3(tokens) -> int:
     else: # else the character is a number
       stack.append(int(c)) # append the number to the stack
   return stack[0] # return the result. There should only be one element in the stack at the end
-# Time Complexity: O(n)
-# Space Complexity: O(n)
-
 
 # Test Cases
 if __name__ == "__main__":

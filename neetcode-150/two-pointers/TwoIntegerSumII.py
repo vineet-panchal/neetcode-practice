@@ -1,3 +1,6 @@
+# 167 - Two Sum II Input Array Is Sorted
+# Leetcode Link: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+
 '''
 Given an array of integers numbers that is sorted in non-decreasing order.
 Return the indices (1-indexed) of two numbers, [index1, index2], such that they add up to a given target number target and index1 < index2. Note that index1 and index2 cannot be equal, therefore you may not use the same element twice.
@@ -10,11 +13,10 @@ Output: [1,2]
 Explanation: The sum of 1 and 2 is 3. Since we are assuming a 1-indexed array, index1 = 1, index2 = 2. We return [1, 2].
 '''
 
-'''
-since, this is a sorted list, we can use the two pointer approach.
-'''
-
-def twoSum(self, numbers, target):
+# Solutions To The Problem:
+# Time complexity: O(n)
+# Space complexity: O(1)
+def twoSum(numbers, target):
   left = 0 # set left pointer to the start of the list
   right = len(numbers) - 1 # set right pointer to the end of the list
 
@@ -29,9 +31,6 @@ def twoSum(self, numbers, target):
     else: # else, the current sum is equal to the target
       return [left + 1, right + 1] # return our two indices (1-indexed, so add 1 to both)
   return [] # we have not found a two sum, return empty list
-# Time complexity: O(n)
-# Space complexity: O(1)
-# The time complexity is O(n) because we are iterating through the array once with two pointers, and the space complexity is O(1) because we are using only a constant amount of extra space for the left and right pointers.
 
 if __name__ == "__main__":
   numbers = [1,2,3,4]

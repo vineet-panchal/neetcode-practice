@@ -1,3 +1,6 @@
+# 238 - Product of Array Except Self
+# Leetcode Link: https://leetcode.com/problems/product-of-array-except-self/
+
 '''
 Given an integer array nums, return an array output where output[i] is the product of all the elements of nums except nums[i].
 Each product is guaranteed to fit in a 32-bit integer.
@@ -12,6 +15,22 @@ Input: nums = [-1,0,1,2,3]
 Output: [0,-6,0,0,0]
 '''
 
+'''
+Initial Thoughts
+
+Simplify the problem:
+  - given an array, we are to return an array where each element of the resulting array is the product of all the elements except itself
+
+Pattern Recognition: Straightforward/Optimal solution
+  - we can use a two pass approach, where the first pass builds up the product of all elements before each index
+  - the second pass, multiplies each position of all elements after that index
+'''
+
+# Solutions To The Problem:
+
+# Two-Pass Approach
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def productExceptSelf(nums):
   '''
   we can use the two pass-approach
